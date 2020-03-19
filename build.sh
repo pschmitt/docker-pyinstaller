@@ -33,6 +33,7 @@ then
   IMAGE_NAME="${IMAGE_NAME:-${DEFAULT_IMAGE_NAME}}"
   BASE_TAG="${BASE_TAG:-3.7-buster}"
   TAG="${TAG:-latest}"
+  EXTRA_BUILD_ARGS=()
 
   case "$1" in
     help|h|--help|-h)
@@ -47,6 +48,8 @@ then
     3.7|3)
       TAG=3.7
       BASE_TAG=3.7-buster
+      # Tag 3.7 as latest
+      EXTRA_BUILD_ARGS+=("--tag ${IMAGE_NAME}:latest")
       shift
       ;;
     3.8)
@@ -56,7 +59,7 @@ then
       ;;
   esac
 
-  EXTRA_BUILD_ARGS=("--build-arg=BASE_TAG=${BASE_TAG}")
+  EXTRA_BUILD_ARGS+=("--build-arg=BASE_TAG=${BASE_TAG}")
 
   case "$1" in
     push|p|--push|-p)
