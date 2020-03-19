@@ -42,12 +42,12 @@ then
       ;;
     2.7|2)
       TAG=2.7
-      BASE_TAG=2.7-stretch
+      BASE_TAG=2.7-jessie
       shift
       ;;
     3.7|3)
       TAG=3.7
-      BASE_TAG=3.7-buster
+      BASE_TAG=3.7-stretch
       # Tag 3.7 as latest
       EXTRA_BUILD_ARGS+=("--tag ${IMAGE_NAME}:latest")
       shift
