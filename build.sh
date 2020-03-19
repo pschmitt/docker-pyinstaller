@@ -42,7 +42,7 @@ then
       ;;
     2.7|2)
       TAG=2.7
-      BASE_TAG=2.7-jessie
+      BASE_TAG=2.7-wheezy
       shift
       ;;
     3.5)
