@@ -59,7 +59,7 @@ then
       TAG=3.7
       BASE_TAG=3.7-stretch
       # Tag 3.7 as latest
-      EXTRA_BUILD_ARGS+=("--tag ${IMAGE_NAME}:latest")
+      EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
       shift
       ;;
     3.8)
