@@ -45,6 +45,16 @@ then
       BASE_TAG=2.7-jessie
       shift
       ;;
+    3.5)
+      TAG=3.5
+      BASE_TAG=3.5-jessie
+      shift
+      ;;
+    3.6)
+      TAG=3.6
+      BASE_TAG=3.6-jessie
+      shift
+      ;;
     3.7|3)
       TAG=3.7
       BASE_TAG=3.7-stretch
