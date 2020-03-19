@@ -42,14 +42,17 @@ then
     2.7|2)
       TAG=2.7
       BASE_TAG=2.7-stretch
+      shift
       ;;
     3.7|3)
       TAG=3.7
       BASE_TAG=3.7-buster
+      shift
       ;;
     3.8)
       TAG=3.8
       BASE_TAG=3.8-buster
+      shift
       ;;
   esac
 
