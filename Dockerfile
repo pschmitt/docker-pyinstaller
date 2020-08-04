@@ -12,7 +12,8 @@ RUN if [[ "$(dpkg --print-architecture)" == "i386" ]]; \
 
 ADD entrypoint.sh /entrypoint.sh
 
-ENV DEPS= HIDDEN_IMPORTS= REQUIREMENTS_FILE=requirements.txt STATICX= STATICX_ARGS=
+ENV DEPS= HIDDEN_IMPORTS= REQUIREMENTS_FILE=requirements.txt \
+    STATICX= STATICX_ARGS= STATIX_TARGET= STATICX_OUTPUT=
 
 VOLUME ["/app"]
 
