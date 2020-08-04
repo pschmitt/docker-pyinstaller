@@ -26,6 +26,7 @@ then
   STATICX_OUTPUT="${STATICX_OUTPUT:-${STATICX_TARGET}_static}"
 
   echo "Running staticx on $STATICX_TARGET (-> ${STATICX_OUTPUT})"
+  rm -f "$STATICX_OUTPUT"
   staticx "${STATICX_ARGS[@]}" "$STATICX_TARGET" "${STATICX_OUTPUT}"
 else
   exit "$PYINSTALLER_RC"
