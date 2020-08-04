@@ -18,6 +18,8 @@ docker run -it --rm \
 
 ## Static binaries
 
+**WARNING**: This is currently only supported on amd64.
+
 To run staticx on the binary produced by pyinstaller you need can make use the `STATICX_*` environment variables:
 
 - `STATICX`: Enable staticx. Set to any value. Unset by default.

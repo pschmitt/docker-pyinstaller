@@ -2,10 +2,13 @@ ARG BASE_TAG=python:3.7-stretch
 
 FROM python:${BASE_TAG}
 
-RUN apt-get update && \
-    apt-get install -y patchelf && \
-    pip install pyinstaller staticx && \
-    rm -rf /var/lib/apt/lists/*
+RUN if [[ "$(dpkg --print-architecture)" == "i386" ]]; \
+    then \
+      apt-get update && \
+      apt-get install -y patchelf && \
+      rm -rf /var/lib/apt/lists/*; \
+    fi && \
+    pip install pyinstaller staticx
 
 ADD entrypoint.sh /entrypoint.sh
 
