@@ -2,7 +2,7 @@ ARG BASE_TAG=python:3.7-stretch
 
 FROM python:${BASE_TAG}
 
-RUN if [[ "$(dpkg --print-architecture)" == "i386" ]]; \
+RUN if [[ "$(dpkg --print-architecture)" == "amd64" ]]; \
     then \
       apt-get update && \
       apt-get install -y patchelf && \
