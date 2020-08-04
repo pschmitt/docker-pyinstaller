@@ -2,12 +2,9 @@ ARG BASE_TAG=python:3.7-stretch
 
 FROM python:${BASE_TAG}
 
-RUN if [[ "$(dpkg --print-architecture)" == "amd64" ]]; \
-    then \
-      apt-get update && \
-      apt-get install -y patchelf && \
-      rm -rf /var/lib/apt/lists/*; \
-    fi && \
+RUN apt-get update && \
+    apt-get install -y patchelf || true && \
+    rm -rf /var/lib/apt/lists/* && \
     pip install pyinstaller staticx
 
 ADD entrypoint.sh /entrypoint.sh
