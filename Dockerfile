@@ -2,10 +2,7 @@ ARG BASE_TAG=python:3.7-stretch
 
 FROM python:${BASE_TAG}
 
-RUN apt-get update && \
-    apt-get install -y patchelf || true && \
-    rm -rf /var/lib/apt/lists/* && \
-    pip install pyinstaller staticx
+RUN pip install pyinstaller patchelf-wrapper staticx
 
 ADD entrypoint.sh /entrypoint.sh
 
