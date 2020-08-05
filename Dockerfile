@@ -2,7 +2,8 @@ ARG BASE_TAG=python:3.7-stretch
 
 FROM python:${BASE_TAG}
 
-RUN pip install pyinstaller patchelf-wrapper staticx
+RUN pip install patchelf-wrapper || true && \
+    pip install pyinstaller staticx
 
 ADD entrypoint.sh /entrypoint.sh
 
