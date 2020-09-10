@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -euxo
+set -exo
 
 cd /app || exit 9
 
