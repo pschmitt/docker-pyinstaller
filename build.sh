@@ -40,11 +40,6 @@ then
       usage
       exit 0
       ;;
-    2.7|2)
-      TAG=2.7
-      BASE_TAG=2.7-wheezy
-      shift
-      ;;
     3.5)
       TAG=3.5
       BASE_TAG=3.5-jessie
