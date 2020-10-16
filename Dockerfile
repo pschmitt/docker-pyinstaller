@@ -2,8 +2,8 @@ ARG BASE_TAG=python:3.8-buster
 
 FROM python:${BASE_TAG}
 
-RUN pip install patchelf-wrapper || true && \
-    pip install pyinstaller staticx
+RUN pip install patchelf-wrapper && \
+    pip install pyinstaller SCons staticx
 
 ADD entrypoint.sh /entrypoint.sh
 
