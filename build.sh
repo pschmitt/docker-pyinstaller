@@ -53,13 +53,18 @@ then
     3.7|3)
       TAG=3.7
       BASE_TAG=3.7-stretch
-      # Tag 3.7 as latest
-      EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
       shift
       ;;
     3.8)
       TAG=3.8
       BASE_TAG=3.8-buster
+      # Tag 3.8 as latest
+      EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
+      shift
+      ;;
+    3.9)
+      TAG=3.9
+      BASE_TAG=3.9-buster
       shift
       ;;
   esac
