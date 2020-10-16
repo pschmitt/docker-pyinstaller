@@ -1,4 +1,4 @@
-ARG BASE_TAG=python:3.7-stretch
+ARG BASE_TAG=python:3.8-buster
 
 FROM python:${BASE_TAG}
 
