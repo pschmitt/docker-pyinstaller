@@ -26,4 +26,4 @@ To run staticx on the binary produced by pyinstaller you need can make use the `
 - `STATICX`: Enable staticx. Set to any value. Unset by default.
 - `STATICX_ARGS`: Set staticx's arguments. Eg: `--strip`. Unset by default.
 - `STATICX_TARGET`: Set the name of the binary in the `dist/` directory which we should run staticx against. Default to the first file in `dist/`.
-- `STATIC_OUTPUT`: Name of the resulting binary. Defaults to `${STATICX_TARGET}_static`.
+- `STATICX_OUTPUT`: Name of the resulting binary. Defaults to `${STATICX_TARGET}_static`.
