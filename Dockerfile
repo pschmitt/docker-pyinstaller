@@ -5,7 +5,7 @@ FROM python:${BASE_TAG}
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
     pip install pyinstaller staticx && \
-    if [[ "$(uname -m)" != "mips64le" ]]; \
+    if [ "$(uname -m)" != "mips64le" ]; \
     then \
       curl https://sh.rustup.rs -sSf | sh -s -- -y && \
       for file in $HOME/.cargo/bin/*; \
