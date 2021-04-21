@@ -44,7 +44,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build docker container
-        env:
-          DOCKER_CLI_EXPERIMENTAL: enabled
         run: |
           ./build.sh ${{ matrix.python_version }} -p
