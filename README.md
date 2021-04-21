@@ -5,7 +5,7 @@
 
 With this container you can run pyinstaller over your projects. It uses the oldest possible debian version (ie. docker tag) so that the resulting binaries are compatible with a wider range of linux OSes.
 
-## Usage example
+# Usage example
 
 ```bash
 docker run -it --rm \
@@ -17,9 +17,22 @@ docker run -it --rm \
     app.py
 ```
 
+# Configuration
+
+There's a few ENV vars you can set:
+
+- `REQUIREMENTS_FILE`: Path to a `requirements.txt` file which is to installed
+before running pyinstaller.
+- `UPDATE_PIP`: Set to any value to make the entrypoint script update pip,
+setuptools and wheel before installing the dependencies defined in 
+`requirements.txt` or `pyproject.toml`
+- `SKIP_PIP_INSTALL_PROJECT`: Set to any value to disable installing the project
+via `pip install .` which may be undesirable if you want a `requirements.txt`
+file to take precendence for example.
+
 ## Static binaries
 
-**WARNING**: This is currently only supported on amd64.
+**WARNING**: This is currently only "supported" on amd64.
 
 To run staticx on the binary produced by pyinstaller you need can make use the `STATICX_*` environment variables:
 
