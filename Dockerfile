@@ -1,10 +1,12 @@
-ARG BASE_TAG=python:3.9-buster
+ARG BASE_TAG=3.9-buster
 
 FROM python:${BASE_TAG}
 
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
-    pip install pyinstaller staticx
+    PYINSTALLER_RELEASE="$(git ls-remote --tags https://github.com/pyinstaller/pyinstaller | sort --version-sort -k 2 | tail -1 | sed -rn 's|.*refs/tags/v?([^\^]+)(\^\{\})?|\1|p')"; \
+    pip install "https://github.com/pyinstaller/pyinstaller/releases/latest/download/pyinstaller-${PYINSTALLER_RELEASE}.tar.gz" && \
+    pip install staticx
 
 ADD entrypoint.sh /entrypoint.sh
 
