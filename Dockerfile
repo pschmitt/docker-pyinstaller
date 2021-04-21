@@ -5,11 +5,14 @@ FROM python:${BASE_TAG}
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
     pip install pyinstaller staticx && \
-    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-    for file in $HOME/.cargo/bin/*; \
-    do \
-      ln -sfv "$file" /usr/local/bin; \
-    done
+    if [[ "$(uname -m)" != "mips64le" ]] \
+    then \
+      curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+      for file in $HOME/.cargo/bin/*; \
+      do \
+        ln -sfv "$file" /usr/local/bin; \
+      done \
+    fi
 
 
 ADD entrypoint.sh /entrypoint.sh
