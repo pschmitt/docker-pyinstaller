@@ -13,7 +13,19 @@ fi
 
 REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
 
-pip install -r "$REQUIREMENTS_FILE"
+if [[ -e "$REQUIREMENTS_FILE" ]]
+then
+  pip install -r "$REQUIREMENTS_FILE"
+else
+  echo "No requirements file provided or $REQUIREMENTS_FILE does not exist" >&2
+fi
+
+# Install from setup.py or pyproject.toml unless SKIP_PIP_INSTALL_PROJECT is set
+if [[ -z "$SKIP_PIP_INSTALL_PROJECT" ]] && \
+   [[ -e setup.py || -e pyproject.toml ]]
+then
+  pip install .
+fi
 
 pyinstaller --clean -F "$@"
 PYINSTALLER_RC="$?"
