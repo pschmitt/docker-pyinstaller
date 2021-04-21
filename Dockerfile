@@ -2,18 +2,13 @@ ARG BASE_TAG=3.9-buster
 
 FROM python:${BASE_TAG}
 
+ADD install-rust.sh /install-rust.sh
+
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
     pip install pyinstaller staticx && \
-    if [ "$(uname -m)" != "mips64le" ]; \
-    then \
-      curl https://sh.rustup.rs -sSf | sh -s -- -y && \
-      for file in $HOME/.cargo/bin/*; \
-      do \
-        ln -sfv "$file" /usr/local/bin; \
-      done \
-    fi
-
+    /install-rust.sh && \
+    rm -f /install-rust.sh
 
 ADD entrypoint.sh /entrypoint.sh
 
