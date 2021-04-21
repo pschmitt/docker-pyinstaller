@@ -4,7 +4,13 @@ FROM python:${BASE_TAG}
 
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
-    pip install pyinstaller staticx
+    pip install pyinstaller staticx && \
+    curl https://sh.rustup.rs -sSf | sh -s -- -y && \
+    for file in $HOME/.cargo/bin/*; \
+    do \
+      ln -sfv "$file" /usr/local/bin; \
+    done
+
 
 ADD entrypoint.sh /entrypoint.sh
 
