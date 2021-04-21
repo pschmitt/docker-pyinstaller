@@ -1,4 +1,4 @@
-ARG BASE_TAG=python:3.9-buster
+ARG BASE_TAG=3.9-buster
 
 FROM python:${BASE_TAG}
 
