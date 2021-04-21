@@ -4,12 +4,7 @@ FROM python:${BASE_TAG}
 
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
-    PYINSTALLER_RELEASE="$(git ls-remote --tags \
-        https://github.com/pyinstaller/pyinstaller | \
-        sort --version-sort -k 2 | tail -1 | \
-        sed -rn 's|.*refs/tags/v?([^\^]+)(\^\{\})?|\1|p')"; \
-    pip install \
-        "https://github.com/pyinstaller/pyinstaller/releases/latest/download/pyinstaller-${PYINSTALLER_RELEASE}.tar.gz" && \
+    pip install pyinstaller staticx && \
     if [ "$(uname -m)" != "mips64le" ]; \
     then \
       curl https://sh.rustup.rs -sSf | sh -s -- -y && \
@@ -18,6 +13,7 @@ RUN pip install -U pip setuptools wheel && \
         ln -sfv "$file" /usr/local/bin; \
       done \
     fi
+
 
 ADD entrypoint.sh /entrypoint.sh
 
