@@ -11,6 +11,11 @@ then
   rm -rf /var/lib/apt/lists/*
 fi
 
+if [[ -n "$UPDATE_PIP" ]]
+then
+  pip install -U pip setuptools wheel
+fi
+
 REQUIREMENTS_FILE="${REQUIREMENTS_FILE:-requirements.txt}"
 
 if [[ -e "$REQUIREMENTS_FILE" ]]
