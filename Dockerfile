@@ -13,7 +13,7 @@ RUN pip install -U pip setuptools wheel && \
 ADD entrypoint.sh /entrypoint.sh
 
 ENV DEPS= HIDDEN_IMPORTS= REQUIREMENTS_FILE=requirements.txt \
-    SKIP_PIP_INSTALL_PROJECT= UPDATE_PIP= \
+    SKIP_PIP_INSTALL_PROJECT= UPDATE_PIP= DIST_PATH= \
     STATICX= STATICX_ARGS= STATIX_TARGET= STATICX_OUTPUT=
 
 VOLUME ["/app"]

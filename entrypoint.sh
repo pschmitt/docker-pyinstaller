@@ -32,13 +32,19 @@ then
   pip install .
 fi
 
-pyinstaller --clean -F "$@"
+EXTRA_ARGS=()
+if [[ -n "$DIST_PATH" ]]
+then
+  EXTRA_ARGS+=(--distpath "$DIST_PATH")
+fi
+
+pyinstaller --clean --onefile --noconfirm "${EXTRA_ARGS[@]}" "$@"
 PYINSTALLER_RC="$?"
 
 if [[ -n "$STATICX" ]]        || [[ -n "$STATICX_ARGS" ]] || \
    [[ -n "$STATICX_TARGET" ]] || [[ -n "$STATICX_OUTPUT" ]]
 then
-  DIST_FILES=(./dist/*)
+  DIST_FILES=("${DIST_PATH:-./dist}"/*)
   STATICX_TARGET="${STATIX_TARGET:-${DIST_FILES[0]}}"
   STATICX_OUTPUT="${STATICX_OUTPUT:-${STATICX_TARGET}_static}"
   STATICX_ARGS=($STATICX_ARGS)
