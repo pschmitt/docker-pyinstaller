@@ -32,7 +32,7 @@ then
   pip install .
 fi
 
-DIST_PATH="${DIST_PATH:-./dist}"
+DIST_PATH="$(realpath -q "${DIST_PATH:-./dist}")"
 if [[ -n "$CLEAN" ]]
 then
   rm -rf ./build *.spec "$DIST_PATH"
@@ -55,7 +55,7 @@ if [[ -n "$STATICX" ]]        || [[ -n "$STATICX_ARGS" ]] || \
    [[ -n "$STATICX_TARGET" ]] || [[ -n "$STATICX_OUTPUT" ]]
 then
   DIST_FILES=("${DIST_PATH:-./dist}"/*)
-  STATICX_TARGET="${STATIX_TARGET:-${DIST_FILES[0]}}"
+  STATICX_TARGET="${STATIX_TARGET:-$(realpath -q ${DIST_FILES[0]})}"
   STATICX_OUTPUT="${STATICX_OUTPUT:-${STATICX_TARGET}_static}"
   STATICX_ARGS=($STATICX_ARGS)
 
