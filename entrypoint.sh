@@ -32,14 +32,24 @@ then
   pip install .
 fi
 
-EXTRA_ARGS=()
-if [[ -n "$DIST_PATH" ]]
+DIST_PATH="${DIST_PATH:-./dist}"
+if [[ -n "$CLEAN" ]]
 then
-  EXTRA_ARGS+=(--distpath "$DIST_PATH")
+  rm -rf ./build *.spec "$DIST_PATH"
 fi
 
-pyinstaller --clean --onefile --noconfirm "${EXTRA_ARGS[@]}" "$@"
+pyinstaller --clean --onefile --noconfirm --distpath "$DIST_PATH" "$@"
 PYINSTALLER_RC="$?"
+
+if [[ -n "$OWNER" ]]
+then
+  chown -R "$OWNER" "$DIST_PATH"
+fi
+
+if [[ -n "$CLEAN" ]]
+then
+  rm -rf ./build *.spec
+fi
 
 if [[ -n "$STATICX" ]]        || [[ -n "$STATICX_ARGS" ]] || \
    [[ -n "$STATICX_TARGET" ]] || [[ -n "$STATICX_OUTPUT" ]]
@@ -51,10 +61,18 @@ then
 
   echo "Running staticx on $STATICX_TARGET (-> ${STATICX_OUTPUT})"
   rm -f "$STATICX_OUTPUT"
+
   staticx "${STATICX_ARGS[@]}" "$STATICX_TARGET" "${STATICX_OUTPUT}"
+  STATICX_RC="$?"
+
   chmod 755 "${STATICX_OUTPUT}"
-else
-  exit "$PYINSTALLER_RC"
+  if [[ -n "$OWNER" ]]
+  then
+    chown "$OWNER" "${STATICX_OUTPUT}"
+  fi
+  exit "$STATICX_RC"
 fi
+
+exit "$PYINSTALLER_RC"
 
 # vim set ft=bash et ts=2 sw=2 :
