@@ -63,7 +63,12 @@ then
     3.9)
       TAG=3.9
       BASE_TAG=3.9-buster
-      # Tag 3.9 as latest
+      shift
+      ;;
+    3.10)
+      TAG=3.10
+      BASE_TAG=3.10-buster
+      # Tag 3.10 as latest
       EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
       shift
       ;;
