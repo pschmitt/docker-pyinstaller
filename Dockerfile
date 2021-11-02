@@ -7,6 +7,10 @@ ADD install-rust.sh /install-rust.sh
 RUN pip install -U pip setuptools wheel && \
     pip install patchelf-wrapper SCons && \
     pip install pyinstaller staticx && \
+    if [ "$(dpkg --print-architecture)" = "armhf" ]; then \
+      echo "Instructing pip to fetch wheels from piwheels.org" >&2; \
+      echo -e "[global]\nextra-index-url=https://www.piwheels.org/simple\n" > /etc/pip.conf; \
+    fi;
     /install-rust.sh && \
     rm -f /install-rust.sh
 
