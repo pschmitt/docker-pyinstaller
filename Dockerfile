@@ -1,4 +1,4 @@
-ARG BASE_TAG=3.9-buster
+ARG BASE_TAG=3.10-buster
 
 FROM python:${BASE_TAG}
 
