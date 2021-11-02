@@ -10,7 +10,7 @@ RUN pip install -U pip setuptools wheel && \
     if [ "$(dpkg --print-architecture)" = "armhf" ]; then \
       echo "Instructing pip to fetch wheels from piwheels.org" >&2; \
       echo -e "[global]\nextra-index-url=https://www.piwheels.org/simple\n" > /etc/pip.conf; \
-    fi;
+    fi; \
     /install-rust.sh && \
     rm -f /install-rust.sh
 
