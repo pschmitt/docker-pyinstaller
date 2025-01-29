@@ -68,9 +68,24 @@ then
     3.10)
       TAG=3.10
       BASE_TAG=3.10-buster
-      # Tag 3.10 as latest
-      EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
       shift
+      ;;
+    3.11)
+      TAG=3.11
+      BASE_TAG=3.11-bullseye
+      shift
+      ;;
+    3.12)
+      TAG=3.12
+      BASE_TAG=3.12-bullseye
+      shift
+      ;;
+    3.13)
+      TAG=3.13
+      BASE_TAG=3.13-bullseye
+      shift
+      # Tag 3.13 as latest
+      EXTRA_BUILD_ARGS+=("--tag=${IMAGE_NAME}:latest")
       ;;
   esac
 
