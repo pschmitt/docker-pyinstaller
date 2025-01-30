@@ -19,7 +19,7 @@ get_available_architectures() {
   docker buildx imagetools inspect --raw "${image}:${tag}" | \
     jq -r '.manifests[].platform | .os + "/" + .architecture + "/" + .variant' | \
     sed 's#/$##' | sort | \
-    grep -vE "windows|linux/arm/v5"  # remove unsupported
+    grep -vE "unknown|windows|linux/arm/v5"  # remove unsupported
 }
 
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]
